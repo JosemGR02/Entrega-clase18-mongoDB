@@ -127,3 +127,54 @@ DESAFIO MONGODB             Jose Gomez
 
 
 |---------------------------------------------------|
+
+
+// El producto paraguas quedo medio mal ni idea x que
+
+db.productos.find()
+[
+  {
+    _id: ObjectId("63767beb25cc031fc2903d9d"),
+    titulo: 'auricular',
+    precio: 4219,
+    imagen: 'https://i.blogs.es/5efe2c/cap_001/450_1000.jpg',
+    stock: 0
+  },
+  {
+    _id: ObjectId("63767beb25cc031fc2903d9f"),
+    titulo: 'reloj',
+    precio: 4800,
+    imagen: 'https://i.blogs.es/5efe2c/cap_001/450_1000.jpg',
+    stock: 0
+  },
+  {
+    _id: ObjectId("63767beb25cc031fc2903da0"),
+    titulo: 'escalera',
+    precio: 1200,
+    imagen: 'https://i.blogs.es/5efe2c/cap_001/450_1000.jpg',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63767beb25cc031fc2903da2"),
+    titulo: 'vaso',
+    precio: 2339,
+    imagen: 'https://i.blogs.es/5efe2c/cap_001/450_1000.jpg',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63767beb25cc031fc2903da3"),
+    titulo: 'auto',
+    precio: 3225,
+    imagen: 'https://i.blogs.es/5efe2c/cap_001/450_1000.jpg',
+    stock: 100
+  },
+  {
+    '0': {
+      titulo: 'paraguas',
+      precio: 1570,
+      imagen: 'https://i.blogs.es/5efe2c/cap_001/450_1000.jpg'
+    },
+    _id: ObjectId("63767d2725cc031fc2903dae"),
+    stock: 100
+  }
+]
