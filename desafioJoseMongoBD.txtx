@@ -1,0 +1,133 @@
+
+DESAFIO MONGODB             Jose Gomez
+
+|---------------------------------------------------|
+
+1) Agregar 10 documentos con valores distintos a las colecciones productos y mensajes
+
+|---------------------------------------------------|
+
+2) valores de precios $100 a $5000 
+
+|---------------------------------------------------|
+
+3) Listar todos los documentos en cada coleccion
+
+|---------------------------------------------------|
+
+4) Mostrar la cantidad de codumentos almacenados en cada una de ellas
+
+|---------------------------------------------------|
+
+
+5) Realizar un Crud sobre la coleccion de productos:
+
+    a) Agregar +1 productos coleccion productos
+
+    b) Realizar una consulta x nombre de producto especifico:
+
+        1. Listar los productos con precio < 1000
+
+        2. Listar los productos con precio >= 1000 y <= 3000
+
+        3. Listar los productos con precio > 3000
+
+        4. Realizar una consulta que traiga solo el nombre del 3er producto mas barato
+
+    c) Hacer actualizacion sobre todos los productos, agregando el campo stock a todos con valor de 100
+
+    d) cambiar stock a 0 los productos con precio > 4000
+
+    e) Borrar producto con precio < 1000
+
+|---------------------------------------------------|
+
+
+0) base datos:
+        ecommerce
+            colecciones:
+                productos
+                mensajes
+
+    // creo base datos
+    use ecommerce
+
+    // creo colecciones productos y mensajes
+    db.createCollections('productos')
+
+    db.createCollections('mensajes')
+
+1)
+    // productos
+    
+    db.productos.insertMany([
+    { "titulo": "lapicera", "precio": 150, "imagen": "https://i.blogs.es/5efe2c/cap_001/450_1000.jpg" },
+    { "titulo": "cuaderno", "precio": 886, "imagen": "https://i.blogs.es/5efe2c/cap_001/450_1000.jpg" },
+    { "titulo": "galletitas", "precio": 685, "imagen": "https://i.blogs.es/5efe2c/cap_001/450_1000.jpg" },
+    { "titulo": "auricular", "precio": 4219, "imagen": "https://i.blogs.es/5efe2c/cap_001/450_1000.jpg" },
+    { "titulo": "vino", "precio": 311, "imagen": "https://i.blogs.es/5efe2c/cap_001/450_1000.jpg" },
+    { "titulo": "reloj", "precio": 4800, "imagen": "https://i.blogs.es/5efe2c/cap_001/450_1000.jpg" },
+    { "titulo": "escalera", "precio": 1200, "imagen": "https://i.blogs.es/5efe2c/cap_001/450_1000.jpg" },
+    { "titulo": "remera", "precio": 235, "imagen": "https://i.blogs.es/5efe2c/cap_001/450_1000.jpg" },
+    { "titulo": "vaso", "precio": 2339, "imagen": "https://i.blogs.es/5efe2c/cap_001/450_1000.jpg" },
+    { "titulo": "auto", "precio": 3225, "imagen": "https://i.blogs.es/5efe2c/cap_001/450_1000.jpg" },
+    ])
+
+    // mensajes
+
+    db.mensajes.insertMany([
+    { "email": "Pablo@email.com", "mensaje": "hola1", "createDate": "gsaghsg" },
+    { "email": "pepito@email.com", "mensaje": "hola2", "createDate": "gsaghsg" },
+    { "email": "Lucia@email.com", "mensaje": "hgsahsyhag", "createDate": "gsaghsg" },
+    { "email": "Juan@yahoo.com", "mensaje": "hola3", "createDate": "gsaghsg" },
+    { "email": "Fede@gmail.com", "mensaje": "jdsfvuyfui", "createDate": "gsaghsg" },
+    { "email": "Andres@email.com", "mensaje": "holaaaa", "createDate": "gsaghsg" },
+    { "email": "aaaaaaaa@email.com", "mensaje": "aaaaaaaaaaaa", "createDate": "gsaghsg" },
+    { "email": "Martina@email.com", "mensaje": "hola4", "createDate": "gsaghsg" },
+    { "email": "Tadeo@gmail.com", "mensaje": "hola_mundo", "createDate": "gsaghsg" },
+    { "email": "Sofia@email.com", "mensaje": "sgdhjshdhjdhj", "createDate": "gsaghsg" },
+    ])
+
+
+3)
+    db.productos.find()
+    db.mensajes.find()
+
+
+4)
+    db.productos.count()
+    db.mensajes.count()
+
+5)
+    a) 
+        db.productos.insertOne([ { "titulo" : "paraguas", "precio" : 1570, "imagen": "https://i.blogs.es/5efe2c/cap_001/450_1000.jpg" } ])
+
+
+    b) 
+        1. 
+            db.productos.find( { precio: { $lt: 1000}})
+
+        2. 
+            db.productos.find( { $and: [{ precio : { $gte : 1000} } , { precio : { $lte : 3000} } ]})
+
+        3. 
+            db.productos.find( { precio : { $gt : 3000}})
+
+        4. 
+            db.productos.find({}, {titulo:1}).sort({precio:1}).limit(1).skip(3)
+
+    c)
+        db.productos.update({} , { $set:{stock: 100 } }, {multi:true}) 
+
+    d) 
+        db.productos.update( {precio: { $gt : 4000}} , { $set:{stock: 0 } }, {multi:true})
+
+    e)
+        db.productos.deleteMany( {precio: { $lt : 1000}} )
+
+
+|---------------------------------------------------|
+
+db.productos.deleteOne( {titulo: { $lt : 1000}} )
+
+db.productos.deleteOne({titulo:"paraguas" })
