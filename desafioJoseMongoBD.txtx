@@ -127,7 +127,3 @@ DESAFIO MONGODB             Jose Gomez
 
 
 |---------------------------------------------------|
-
-db.productos.deleteOne( {titulo: { $lt : 1000}} )
-
-db.productos.deleteOne({titulo:"paraguas" })
